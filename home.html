@@ -25,31 +25,36 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            padding: 0 20px;
             animation: fadeIn 2s ease-out;
         }
         header h1 {
-            font-size: 5rem;
+            font-size: 4rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             animation: slideDown 1.5s ease-out;
         }
         .intro {
-            margin-top: 50px;
+            margin-top: 30px;
             text-align: center;
             animation: fadeIn 1.5s ease-out 1s both;
         }
         .intro p {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: #666;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             animation: fadeIn 2s ease-out 1s both;
         }
         .buttons {
             margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
         }
         .button {
-            padding: 15px 40px;
-            font-size: 1.5rem;
+            padding: 12px 30px;
+            font-size: 1.4rem;
             margin: 10px;
             border: none;
             border-radius: 30px;
@@ -107,12 +112,49 @@
             color: #ccc;
             line-height: 1.8;
         }
-        @media(max-width: 768px) {
+
+        /* Responsive Styling */
+        @media (max-width: 1200px) {
             header h1 {
                 font-size: 3.5rem;
             }
             .intro p {
+                font-size: 1.4rem;
+            }
+            .buttons {
+                gap: 10px;
+            }
+        }
+        @media (max-width: 768px) {
+            header {
+                height: 90vh;
+            }
+            header h1 {
+                font-size: 3rem;
+            }
+            .intro p {
                 font-size: 1.2rem;
+                margin-bottom: 30px;
+            }
+            .button {
+                padding: 12px 25px;
+                font-size: 1.2rem;
+            }
+        }
+        @media (max-width: 480px) {
+            header {
+                height: 80vh;
+            }
+            header h1 {
+                font-size: 2.5rem;
+            }
+            .intro p {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+            .button {
+                padding: 10px 20px;
+                font-size: 1rem;
             }
         }
         @keyframes slideDown {
