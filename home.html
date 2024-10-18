@@ -25,20 +25,20 @@
 
         /* Navbar */
         nav {
-            background-color: rgba(58, 45, 45, 0.612); /* Transparent black background */
+            background-color: rgba(58, 45, 45, 0.612);
             padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: fixed; /* Fix the navbar at the top */
+            position: fixed;
             width: 100%;
             top: 0;
-            z-index: 1000; /* Stay on top */
+            z-index: 1000;
             transition: background-color 0.3s ease;
         }
 
         nav.scrolled {
-            background-color: rgba(0, 0, 0, 0.9); /* Darker black background when scrolling */
+            background-color: rgba(0, 0, 0, 0.9);
         }
 
         nav h1 {
@@ -100,20 +100,14 @@
             margin: 5px;
             transition: all 0.3s ease-in-out;
             position: relative;
-            display: inline-block; /* Make buttons inline */
-            width: 150px; /* Set the width for uniformity */
+            display: inline-block;
+            width: 150px;
         }
 
         .auth-button:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-            animation: pulse 0.6s infinite alternate; /* Add pulse animation */
-        }
-
-        /* Align buttons horizontally */
-        .button-container {
-            display: flex; /* Use flexbox for horizontal alignment */
-            justify-content: center; /* Center the buttons */
+            animation: pulse 0.6s infinite alternate;
         }
 
         /* Mentors Section */
@@ -121,28 +115,23 @@
             padding: 60px 20px;
             background-color: #f0f4f8;
             text-align: center;
-            animation: fadeIn 2s ease-out;
+            overflow: hidden; /* Hide overflow to create a sliding effect */
         }
 
-        .mentors-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            color: #007BFF;
+        .mentor-wrapper {
+            display: flex;
+            animation: slide 10s linear infinite; /* Slide animation */
         }
 
         .mentor-card {
-            display: inline-block;
             background-color: white;
             padding: 20px;
             margin: 10px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .mentor-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            width: 200px; /* Fixed width for the cards */
+            flex-shrink: 0; /* Prevent cards from shrinking */
+            opacity: 0.9; /* Slight transparency for cards */
         }
 
         .mentor-card img {
@@ -202,7 +191,7 @@
             }
 
             .mentor-card {
-                width: 45%;
+                width: 40%;
             }
         }
 
@@ -220,7 +209,7 @@
             }
 
             .mentor-card {
-                width: 100%;
+                width: 80%;
             }
         }
 
@@ -243,7 +232,7 @@
             }
 
             .auth-button {
-                font-size: 1rem; /* Smaller font size for mobile */
+                font-size: 1rem;
             }
         }
 
@@ -270,6 +259,16 @@
             }
         }
 
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%); /* Move out of view to the left */
+            }
+        }
+
         @keyframes pulse {
             from {
                 transform: scale(1);
@@ -290,7 +289,6 @@
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="mentorship.html">Mentors</a></li>
-            <li><a href="login.html">Logout</a></li>
         </ul>
     </nav>
 
@@ -298,7 +296,7 @@
     <header>
         <h2>Welcome to the SLIET Mentorship Platform</h2>
         <p>Connect with faculty members for one-on-one mentorship sessions.</p>
-        <div class="button-container"> <!-- Added a div to align buttons horizontally -->
+        <div class="button-container">
             <a href="login.html" class="auth-button">Login</a>
             <a href="signup.html" class="auth-button">Sign Up</a>
         </div>
@@ -306,7 +304,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 SLIET Mentorship Platform. All Rights Reserved.</p>
+        <p>© 2024 MentorConnect. All Rights Reserved.</p>
     </footer>
 
 </body>

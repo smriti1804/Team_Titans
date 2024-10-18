@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SLIET Mentorship Platform</title>
     <style>
-        /*Base Styles */
+        /* Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -19,25 +19,54 @@
             --secondary-color: #3498db;
             --accent-color: #e74c3c;
             --light-gray: #f5f6fa;
+            --dark-gray: #34495e;
+            --hover-color: #2980b9;
+            --button-hover: #2980b9;
+            --shadow: rgba(0, 0, 0, 0.2);
         }
 
         body {
             background-color: var(--light-gray);
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Fade In Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         /* Header Styles */
         .header {
             background-color: var(--primary-color);
             color: white;
-            padding: 1rem;
+            padding: 2rem 1rem;
             text-align: center;
+            border-bottom: 5px solid var(--secondary-color);
+            animation: slideInDown 0.5s ease;
+        }
+
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         /* Navigation */
         .nav {
             background-color: white;
             padding: 1rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px var(--shadow);
+            animation: fadeIn 0.5s ease;
         }
 
         .nav-list {
@@ -51,6 +80,30 @@
             text-decoration: none;
             color: var(--primary-color);
             font-weight: 500;
+            position: relative;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .nav-list a::after {
+            content: '';
+            display: block;
+            height: 2px;
+            width: 0;
+            background: var(--secondary-color);
+            transition: width 0.3s;
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-list a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-list a:hover::after {
+            width: 100%;
         }
 
         /* Main Content */
@@ -58,6 +111,7 @@
             max-width: 1200px;
             margin: 2rem auto;
             padding: 0 1rem;
+            animation: fadeIn 0.5s ease;
         }
 
         /* Mentor Grid */
@@ -70,9 +124,28 @@
 
         .mentor-card {
             background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            animation: bounceIn 0.5s ease forwards;
+            opacity: 0; /* Start hidden */
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .mentor-image {
@@ -82,6 +155,12 @@
             margin: 0 auto 1rem;
             display: block;
             background: var(--light-gray);
+            border: 3px solid var(--secondary-color);
+            transition: transform 0.3s;
+        }
+
+        .mentor-card:hover .mentor-image {
+            transform: scale(1.1);
         }
 
         /* Booking System */
@@ -94,10 +173,20 @@
 
         .time-slot {
             padding: 0.5rem;
-            border: 1px solid var(--primary-color);
+            border: 2px solid var(--primary-color);
             border-radius: 4px;
             text-align: center;
             cursor: pointer;
+            transition: background 0.3s, transform 0.3s, color 0.3s;
+            animation: fadeIn 0.5s ease;
+            background: white;
+            font-weight: 500;
+        }
+
+        .time-slot:hover {
+            transform: scale(1.05);
+            background: var(--secondary-color);
+            color: white;
         }
 
         .time-slot.available {
@@ -114,10 +203,22 @@
         /* Chat System */
         .chat-container {
             background: white;
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 1rem;
             margin-top: 2rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px var(--shadow);
+            animation: slideInUp 0.5s ease;
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .chat-messages {
@@ -126,23 +227,41 @@
             border: 1px solid #ddd;
             padding: 1rem;
             margin-bottom: 1rem;
+            border-radius: 4px;
         }
 
         .message {
             margin-bottom: 0.5rem;
             padding: 0.5rem;
             border-radius: 4px;
+            animation: fadeInMessage 0.5s ease;
+            position: relative;
+            max-width: 75%;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        @keyframes fadeInMessage {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         .message.sent {
             background: var(--secondary-color);
             color: white;
-            margin-left: 20%;
+            margin-left: auto;
+            align-self: flex-end;
         }
 
         .message.received {
             background: var(--light-gray);
-            margin-right: 20%;
+            margin-right: auto;
+            align-self: flex-start;
         }
 
         /* Responsive Design */
@@ -156,6 +275,19 @@
             .mentor-grid {
                 grid-template-columns: 1fr;
             }
+
+            .mentor-card {
+                padding: 1rem;
+            }
+
+            .chat-container {
+                padding: 0.5rem;
+            }
+
+            .message {
+                margin-left: 0;
+                margin-right: 0;
+            }
         }
 
         /* Button Styles */
@@ -165,6 +297,8 @@
             border-radius: 4px;
             cursor: pointer;
             font-weight: 500;
+            transition: background 0.3s, transform 0.3s;
+            margin-top: 1rem;
         }
 
         .btn-primary {
@@ -172,12 +306,16 @@
             color: white;
         }
 
+        .btn-primary:hover {
+            background: var(--button-hover);
+            transform: translateY(-2px);
+        }
+
         .btn-danger {
             background: var(--accent-color);
             color: white;
         }
     </style>
-    <link rel="stylesheet" href="home.html">
 </head>
 
 <body>
@@ -196,196 +334,44 @@
 
     <main class="main-content">
         <section id="mentors" class="mentor-grid">
-            <!-- Mentor Cards -->
+            <div class="mentor-card">
+                <img src="https://via.placeholder.com/120" alt="Dr. Birmohan Singh" class="mentor-image">
+                <h3>Dr. Birmohan Singh</h3>
+                <p><strong>Expertise:</strong> Data Science</p>
+                <div class="time-slots">
+                    <div class="time-slot available">9:00 - 9:30 AM</div>
+                    <div class="time-slot booked">10:00 - 10:30 AM</div>
+                    <div class="time-slot available">11:00 - 11:30 AM</div>
+                </div>
+            </div>
+
+            <div class="mentor-card">
+                <img src="https://via.placeholder.com/120" alt="Dr. Sumita Mahajan" class="mentor-image">
+                <h3>Dr. Sumita Mahajan</h3>
+                <p><strong>Expertise:</strong> Software Engineering</p>
+                <div class="time-slots">
+                    <div class="time-slot available">9:00 - 9:30 AM</div>
+                    <div class="time-slot booked">10:00 - 10:30 AM</div>
+                    <div class="time-slot available">11:00 - 11:30 AM</div>
+                </div>
+            </div>
         </section>
 
-        <section id="chat" class="chat-container" style="display: none;">
-            <h2>Chat with Mentor</h2>
+        <section id="bookings">
+            <h2>Your Bookings</h2>
+            <!-- Booking details will go here -->
+        </section>
+
+        <section id="chat" class="chat-container">
+            <h2>Messages</h2>
             <div class="chat-messages">
-                <!-- Messages will be populated here -->
+                <div class="message sent">Hello, Dr. Singh. I have some questions regarding data compression.</div>
+                <div class="message received">Sure, please let me know what you need help with.</div>
             </div>
-            <div class="chat-input">
-                <input type="text" id="messageInput" placeholder="Type your message..."
-                    style="width: 80%; padding: 0.5rem;">
-                <button class="btn btn-primary" onclick="sendMessage()">Send</button>
-            </div>
+            <textarea rows="3" placeholder="Type your message..." class="chat-input"></textarea>
+            <button class="btn btn-primary">Send</button>
         </section>
     </main>
-
-    <script>
-        const mentors = [
-            {
-                name: "Dr. Birmohan Singh",
-                expertise: "Mechanical Engineering",
-                experience: "15 years",
-                timeSlots: ["10:00 AM", "2:00 PM", "4:00 PM"],
-                image: "/assets/Dr_Birmohan_Singh.jpg"
-            },
-            {
-                name: "Dr. Damanpreet Singh",
-                expertise: "Machine Learning & AI",
-                experience: "12 years",
-                timeSlots: ["11:00 AM", "3:00 PM", "5:00 PM"],
-                image: "/assets/Dr_Damanpreet_Singh.jpg"
-            },
-            {
-                name: "Dr. Major Singh Goraya",
-                expertise: "Web Development",
-                experience: "10 years",
-                timeSlots: ["9:00 AM", "1:00 PM", "3:00 PM"],
-                image: "/assets/Dr_Major Singh_Goraya.jpg"
-            },
-            {
-                name: "Dr. Manoj Sachan",
-                expertise: "Cyber Security",
-                experience: "12 years",
-                timeSlots: ["11:00 AM", "3:00 PM", "5:00 PM"],
-                image: "/assets/Dr_Manoj_Sachan.jpg"
-            },
-            {
-                name: "Dr. Gurjinder Kaur",
-                expertise: "Civil Engineering",
-                experience: "12 years",
-                timeSlots: ["10:00 AM", "4:00 PM", "7:00 PM"],
-                image: "/assets/Dr_Gurjinder_Kaur.jpg"
-            },
-            {
-                name: "Dr. Amar Nath",
-                expertise: "Graphic Designer",
-                experience: "8 years",
-                timeSlots: ["7:00 AM", "11:00 AM", "8:00 PM"],
-                image: "/assets/Dr_Amar_Nath.jpg"
-            },
-            {
-                name: "Dr. Jagdeep Singh",
-                expertise: "Python",
-                experience: "7 years",
-                timeSlots: ["8:00 AM", "9:00 AM", "12:00 PM"],
-                image: "/assets/Dr_Jagdeep_Singh.jpg"
-            },
-            {
-                name: "Dr. Manminder Singh",
-                expertise: "Python",
-                experience: "4 years",
-                timeSlots: ["10:00 AM", "1:00 PM", "2:00 PM"],
-                image: "/assets/Dr_Manminder_Singh.jpg"
-            },
-            {
-                name: "Dr. Preetpal Kaur Buttar",
-                expertise: "Javascript",
-                experience: "5 years",
-                timeSlots: ["10:30 AM", "2:30 PM", "9:00 PM"],
-                image: "/assets/Dr_Preetpal_Kaur_Buttar.jpg"
-            },
-            {
-                name: "Dr. Tajinder Singh",
-                expertise: "C",
-                experience: "12 years",
-                timeSlots: ["10:00 AM", "4:00 PM", "7:00 PM"],
-                image: "/assets/Dr_Tajinder_Singh.jpg"
-            },
-            {
-                name: "Dr. Utkarsh",
-                expertise: "DevOps",
-                experience: "9 years",
-                timeSlots: ["11:00 AM", "4:30 PM", "7:00 PM"],
-                image: "/assets/Dr_Utkarsh.jpg"
-            },
-            {
-                name: "Dr. Vinod Kumar Verma",
-                expertise: "MongoDb",
-                experience: "5 years",
-                timeSlots: ["10:00 AM", "4:00 PM", "7:00 PM"],
-                image: "/assets/Dr_Vinod_Kumar_Verma.jpg"
-            },
-            {
-                name: "Jaspal Singh",
-                expertise: "Sql",
-                experience: "16 years",
-                timeSlots: ["7:45 AM", "9:00 AM", "11:40 AM"],
-                image: "/assets/Jaspal_Singh.jpg"
-            },
-            {
-                name: "Rahul Gautam",
-                expertise: "Sql",
-                experience: "6 years",
-                timeSlots: ["8:00 AM", "6:30 PM", "9:00 PM"],
-                image: "/assets/Rahul_Gautam.jpg"
-            },
-            {
-                name: "Dr_Jatinder_Pal_Singh.jpg",
-                expertise: "AWS",
-                experience: "15 years",
-                timeSlots: ["10:00 AM", "4:00 PM", "7:00 PM"],
-                image: "/assets/Dr_Jatinder_Pal_Singh.jpg"
-            },
-            {
-                name: "Sukhpreet Singh",
-                expertise: "Azure",
-                experience: "4 years",
-                timeSlots: ["11:00 AM", "1:45 PM", "4:45 PM"],
-                image: "/assets/Sukhpreet_Singh.jpg"
-            },
-        ];
-
-        // Populate mentor cards
-        function populateMentors() {
-            const mentorGrid = document.querySelector('.mentor-grid');
-            mentorGrid.innerHTML = mentors.map(mentor => `
-                <div class="mentor-card">
-                    <img src="${mentor.image}" alt="${mentor.name}" class="mentor-image">
-                    <h3>${mentor.name}</h3>
-                    <p><strong>Expertise:</strong> ${mentor.expertise}</p>
-                    <p><strong>Experience:</strong> ${mentor.experience}</p>
-                    <div class="time-slots">
-                        ${mentor.timeSlots.map(slot => `
-                            <div class="time-slot available" onclick="bookSlot(this)">
-                                ${slot}
-                            </div>
-                        `).join('')}
-                    </div>
-                    <button class="btn btn-primary" style="margin-top: 1rem;" onclick="openChat()">Message</button>
-                </div>
-            `).join('');
-        }
-
-        // Booking functionality
-        function bookSlot(element) {
-            if (element.classList.contains('available')) {
-                if (confirm('Would you like to book this slot?')) {
-                    element.classList.remove('available');
-                    element.classList.add('booked');
-                    alert('Slot booked successfully!');
-                }
-            }
-        }
-
-        // Chat functionality
-        function openChat() {
-            document.querySelector('#chat').style.display = 'block';
-            document.querySelector('#mentors').style.display = 'none';
-        }
-
-        function sendMessage() {
-            const input = document.querySelector('#messageInput');
-            const message = input.value.trim();
-
-            if (message) {
-                const chatMessages = document.querySelector('.chat-messages');
-                const messageElement = document.createElement('div');
-                messageElement.classList.add('message', 'sent');
-                messageElement.textContent = message;
-                chatMessages.appendChild(messageElement);
-                input.value = '';
-
-                // Auto-scroll to bottom
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-        }
-
-        // Initialize the platform
-        populateMentors();
-    </script>
 </body>
 
 </html>
