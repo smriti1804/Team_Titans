@@ -4,70 +4,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - MentorConnect</title>
+    <title>Login</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #007BFF, #00d4ff);
-            height: 100vh;
+            background-color: #f0f4f8;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
+            height: 100vh;
+            overflow: hidden;
         }
-
         .container {
             background-color: #fff;
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
             width: 400px;
             max-width: 90%;
-            color: #333;
-            animation: fadeIn 1.5s ease-in-out;
+            animation: fadeIn 1.5s ease-out;
         }
-
         h2 {
             text-align: center;
-            margin-bottom: 20px;
             color: #007BFF;
+            margin-bottom: 20px;
             font-size: 2.2rem;
-            animation: slideIn 1.5s ease;
+            animation: slideDown 1.5s ease-out;
         }
-
         .input-field {
             margin-bottom: 20px;
             position: relative;
         }
-
         .input-field label {
             display: block;
-            font-size: 1.2rem;
             color: #666;
+            font-size: 1.2rem;
             margin-bottom: 5px;
         }
-
         .input-field input {
             width: 100%;
-            padding: 12px;
+            padding: 12px 15px;
             font-size: 1rem;
             border-radius: 8px;
             border: 1px solid #ccc;
-            background-color: #f9f9f9;
             transition: all 0.3s ease;
+            background: #f9f9f9;
         }
-
         .input-field input:focus {
             border-color: #007BFF;
-            background-color: white;
+            background-color: #fff;
         }
-
         .submit-btn {
             width: 100%;
             padding: 12px;
@@ -80,64 +71,40 @@
             transition: all 0.3s ease;
             margin-top: 15px;
         }
-
         .submit-btn:hover {
             background-color: #0056b3;
             transform: scale(1.05);
         }
-
         .footer-link {
             text-align: center;
             margin-top: 15px;
             font-size: 1rem;
             color: #666;
         }
-
         .footer-link a {
             color: #007BFF;
             text-decoration: none;
             transition: color 0.3s ease;
         }
-
         .footer-link a:hover {
             color: #0056b3;
         }
 
-        .forgot-password {
-            display: block;
-            text-align: right;
-            margin-top: -10px;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-        }
-
-        .forgot-password a {
-            color: #007BFF;
-            text-decoration: none;
-        }
-
-        .forgot-password a:hover {
-            color: #0056b3;
-        }
-
         /* Animation */
-        @keyframes slideIn {
+        @keyframes slideDown {
             from {
                 opacity: 0;
-                transform: translateX(-50px);
+                transform: translateY(-50px);
             }
-
             to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateY(0);
             }
         }
-
         @keyframes fadeIn {
             from {
                 opacity: 0;
             }
-
             to {
                 opacity: 1;
             }
@@ -146,10 +113,9 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
-                width: 100%;
                 padding: 30px;
+                width: 100%;
             }
-
             h2 {
                 font-size: 1.8rem;
             }
@@ -158,22 +124,21 @@
 </head>
 
 <body>
+    <div class="background"></div>
+
     <div class="container">
         <h2>Login</h2>
         <form action="/home.html" onsubmit="login(event)">
             <div class="input-field">
-                <label for="username">Username:</label>
-                <input type="text" name="username" id="username" required>
+                <label for="loginUsername">Username:</label>
+                <input type="text" name="username" id="loginUsername" required>
             </div>
             <div class="input-field">
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password" required>
-
+                <label for="loginPassword">Password:</label>
+                <input type="password" name="password" id="loginPassword" required>
             </div>
             <div class="forgot-password">
-                <a href="/forgotpassword.html">Forgot Password?
-
-                </a>
+                <a href="/forgotpassword.html">Forgot Password?</a>
             </div>
             <button type="submit" class="submit-btn">Login</button>
             <div class="footer-link">
@@ -182,5 +147,6 @@
         </form>
     </div>
 </body>
+<script src="index.js"></script>
 
 </html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLIET Mentorship Platform</title>
+    <style>
+        /*Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-gray: #f5f6fa;
+        }
+
+        body {
+            background-color: var(--light-gray);
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        /* Navigation */
+        .nav {
+            background-color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-list {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-list a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Mentor Grid */
+        .mentor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .mentor-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .mentor-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: block;
+            background: var(--light-gray);
+        }
+
+        /* Booking System */
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .time-slot {
+            padding: 0.5rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .time-slot.available {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .time-slot.booked {
+            background: var(--accent-color);
+            color: white;
+            cursor: not-allowed;
+        }
+
+        /* Chat System */
+        .chat-container {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .message {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        .message.sent {
+            background: var(--secondary-color);
+            color: white;
+            margin-left: 20%;
+        }
+
+        .message.received {
+            background: var(--light-gray);
+            margin-right: 20%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-list {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .mentor-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--accent-color);
+            color: white;
+        }
+    </style>
+    <link rel="stylesheet" href="home.html">
+</head>
+
+<body>
+    <header class="header">
+        <h1>SLIET Mentorship Platform</h1>
+    </header>
+
+    <nav class="nav">
+        <ul class="nav-list">
+            <li><a href="/home.html">Home</a></li>
+            <li><a href="#mentors">Mentors</a></li>
+            <li><a href="#bookings">My Bookings</a></li>
+            <li><a href="#chat">Messages</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <section id="mentors" class="mentor-grid">
+            <!-- Mentor Cards -->
+        </section>
+
+        <section id="chat" class="chat-container" style="display: none;">
+            <h2>Chat with Mentor</h2>
+            <div class="chat-messages">
+                <!-- Messages will be populated here -->
+            </div>
+            <div class="chat-input">
+                <input type="text" id="messageInput" placeholder="Type your message..."
+                    style="width: 80%; padding: 0.5rem;">
+                <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const mentors = [
+            {
+                name: "Dr. Birmohan Singh",
+                expertise: "Mechanical Engineering",
+                experience: "15 years",
+                timeSlots: ["10:00 AM", "2:00 PM", "4:00 PM"],
+                image: "/assets/Dr_Birmohan_Singh.jpg"
+            },
+            {
+                name: "Dr. Damanpreet Singh",
+                expertise: "Machine Learning & AI",
+                experience: "12 years",
+                timeSlots: ["11:00 AM", "3:00 PM", "5:00 PM"],
+                image: "/assets/Dr_Damanpreet_Singh.jpg"
+            },
+            {
+                name: "Dr. Major Singh Goraya",
+                expertise: "Web Development",
+                experience: "10 years",
+                timeSlots: ["9:00 AM", "1:00 PM", "3:00 PM"],
+                image: "/assets/Dr_Major Singh_Goraya.jpg"
+            },
+            {
+                name: "Dr. Manoj Sachan",
+                expertise: "Cyber Security",
+                experience: "12 years",
+                timeSlots: ["11:00 AM", "3:00 PM", "5:00 PM"],
+                image: "/assets/Dr_Manoj_Sachan.jpg"
+            },
+            {
+                name: "Dr. Gurjinder Kaur",
+                expertise: "Civil Engineering",
+                experience: "12 years",
+                timeSlots: ["10:00 AM", "4:00 PM", "7:00 PM"],
+                image: "/assets/Dr_Gurjinder_Kaur.jpg"
+            },
+            {
+                name: "Dr. Amar Nath",
+                expertise: "Graphic Designer",
+                experience: "8 years",
+                timeSlots: ["7:00 AM", "11:00 AM", "8:00 PM"],
+                image: "/assets/Dr_Amar_Nath.jpg"
+            },
+            {
+                name: "Dr. Jagdeep Singh",
+                expertise: "Python",
+                experience: "7 years",
+                timeSlots: ["8:00 AM", "9:00 AM", "12:00 PM"],
+                image: "/assets/Dr_Jagdeep_Singh.jpg"
+            },
+            {
+                name: "Dr. Manminder Singh",
+                expertise: "Python",
+                experience: "4 years",
+                timeSlots: ["10:00 AM", "1:00 PM", "2:00 PM"],
+                image: "/assets/Dr_Manminder_Singh.jpg"
+            },
+            {
+                name: "Dr. Preetpal Kaur Buttar",
+                expertise: "Javascript",
+                experience: "5 years",
+                timeSlots: ["10::30 AM", "2:30 PM", "9:00 PM"],
+                image: "/assets/Dr_Preetpal_Kaur_Buttar.jpg"
+            },
+            {
+                name: "Dr. Tajinder Singh",
+                expertise: "C",
+                experience: "12 years",
+                timeSlots: ["10:00 AM", "4:00 PM", "7:00 PM"],
+                image: "/assets/Dr_Tajinder_Singh.jpg"
+            },
+            {
+                name: "Dr. Utkarsh",
+                expertise: "DevOps",
+                experience: "9 years",
+                timeSlots: ["11:00 AM", "4:30 PM", "7:00 PM"],
+                image: "/assets/Dr_Utkarsh.jpg"
+            },
+            {
+                name: "Dr. Vinod Kumar Verma",
+                expertise: "MongoDb",
+                experience: "5 years",
+                timeSlots: ["10:00 AM", "4:00 PM", "7:00 PM"],
+                image: "/assets/Dr_Vinod_Kumar_Verma.jpg"
+            },
+            {
+                name: "Jaspal Singh",
+                expertise: "Sql",
+                experience: "16 years",
+                timeSlots: ["7:45 AM", "9:00 AM", "11:40 AM"],
+                image: "/assets/Jaspal_Singh.jpg"
+            },
+            {
+                name: "Rahul Gautam",
+                expertise: "Sql",
+                experience: "6 years",
+                timeSlots: ["8:00 AM", "6:30 PM", "9:00 PM"],
+                image: "/assets/Rahul_Gautam.jpg"
+            },
+            {
+                name: "Dr_Jatinder_Pal_Singh.jpg",
+                expertise: "AWS",
+                experience: "15 years",
+                timeSlots: ["10:00 AM", "4:00 PM", "7:00 PM"],
+                image: "/assets/Dr_Jatinder_Pal_Singh.jpg"
+            },
+            {
+                name: "Sukhpreet Singh",
+                expertise: "Azure",
+                experience: "4 years",
+                timeSlots: ["11:00 AM", "1:45 PM", "4:45 PM"],
+                image: "/assets/Sukhpreet_Singh.jpg"
+            },
+        ];
+
+        // Populate mentor cards
+        function populateMentors() {
+            const mentorGrid = document.querySelector('.mentor-grid');
+            mentorGrid.innerHTML = mentors.map(mentor => `
+                <div class="mentor-card">
+                    <img src="${mentor.image}" alt="${mentor.name}" class="mentor-image">
+                    <h3>${mentor.name}</h3>
+                    <p><strong>Expertise:</strong> ${mentor.expertise}</p>
+                    <p><strong>Experience:</strong> ${mentor.experience}</p>
+                    <div class="time-slots">
+                        ${mentor.timeSlots.map(slot => `
+                            <div class="time-slot available" onclick="bookSlot(this)">
+                                ${slot}
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button class="btn btn-primary" style="margin-top: 1rem;" onclick="openChat()">Message</button>
+                </div>
+            `).join('');
+        }
+
+        // Booking functionality
+        function bookSlot(element) {
+            if (element.classList.contains('available')) {
+                if (confirm('Would you like to book this slot?')) {
+                    element.classList.remove('available');
+                    element.classList.add('booked');
+                    alert('Slot booked successfully!');
+                }
+            }
+        }
+
+        // Chat functionality
+        function openChat() {
+            document.querySelector('#chat').style.display = 'block';
+            document.querySelector('#mentors').style.display = 'none';
+        }
+
+        function sendMessage() {
+            const input = document.querySelector('#messageInput');
+            const message = input.value.trim();
+
+            if (message) {
+                const chatMessages = document.querySelector('.chat-messages');
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message', 'sent');
+                messageElement.textContent = message;
+                chatMessages.appendChild(messageElement);
+                input.value = '';
+
+                // Auto-scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        }
+
+        // Initialize the platform
+        populateMentors();
+    </script>
+</body>
+
+</html>
