@@ -1,5 +1,4 @@
-* 
-{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -84,18 +83,28 @@ header p {
     animation: fadeIn 1.5s ease-out 1s both;
 }
 
-header .cta-button {
-    padding: 15px 40px;
-    font-size: 1.5rem;
-    background-color: #FFD700;
+/* Button Styles */
+.auth-button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background-color: #20479ba2;
     border-radius: 30px;
+    margin: 5px;
     transition: all 0.3s ease-in-out;
-    position: relative;
+    display: inline-block; /* Make buttons inline */
+    width: 150px; /* Set the width for uniformity */
 }
 
-header .cta-button:hover {
+.auth-button:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    animation: pulse 0.6s infinite alternate; /* Add pulse animation */
+}
+
+/* Align buttons horizontally */
+.button-container {
+    display: flex; /* Use flexbox for horizontal alignment */
+    justify-content: center; /* Center the buttons */
 }
 
 /* Mentors Section */
@@ -219,9 +228,8 @@ footer p {
         font-size: 0.9rem;
     }
 
-    .cta-button {
-        padding: 10px 25px;
-        font-size: 1.2rem;
+    .auth-button {
+        font-size: 1rem; /* Smaller font size for mobile */
     }
 }
 
@@ -245,5 +253,15 @@ footer p {
 
     to {
         opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.1);
     }
 }
