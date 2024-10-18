@@ -41,11 +41,4 @@ document.querySelector('form[action="/signup"]').addEventListener('submit', func
 document.querySelector('form[action="/home.html"]').addEventListener('submit', login);
 
 
-<header id="hero-section">
-    <h2>Welcome to the SLIET Mentorship Platform</h2>
-    <p>Connect with faculty members for one-on-one mentorship sessions.</p>
-    <div class="button-container">
-        <a href="login.html" class="auth-button" onclick="slideOut()">Login</a>
-        <a href="signup.html" class="auth-button" onclick="slideOut()">Sign Up</a>
-    </div>
-</header>
+

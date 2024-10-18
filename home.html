@@ -289,9 +289,8 @@
         <h1>MentorConnect</h1>
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">Mentors</a></li>
-            <li><a href="#">Book a Session</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="mentorship.html">Mentors</a></li>
+            <li><a href="login.html">Logout</a></li>
         </ul>
     </nav>
 
@@ -305,39 +304,12 @@
         </div>
     </header>
 
-    <!-- Mentors Section -->
-    <section class="mentors-section">
-        <h2>Our Mentors</h2>
-        <div class="mentor-card">
-            <img src="mentor1.jpg" alt="Mentor 1">
-            <h3>Dr. Aditi Singh</h3>
-            <p>Professor of Computer Science</p>
-            <button class="book-btn">Book a Session</button>
-        </div>
-        <div class="mentor-card">
-            <img src="mentor2.jpg" alt="Mentor 2">
-            <h3>Dr. Raj Patel</h3>
-            <p>Associate Professor of AI</p>
-            <button class="book-btn">Book a Session</button>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 SLIET Mentorship Platform. All Rights Reserved.</p>
     </footer>
 
-    <script>
-        // Change navbar background on scroll
-        window.onscroll = function () {
-            var navbar = document.querySelector("nav");
-            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-                navbar.classList.add("scrolled");
-            } else {
-                navbar.classList.remove("scrolled");
-            }
-        };
-    </script>
 </body>
+<script src="index.js"></script>
 
 </html>
