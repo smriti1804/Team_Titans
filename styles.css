@@ -1,60 +1,252 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Montserrat', sans-serif; 
-
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    font-size: 20px; /* Increased font size for the form text */
-    gap: 15px;
-    padding: 120px; /* Adjusted padding */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-input {
-    padding: 12px;
-    font-size: 18px;
-    width: 100%; /* Adjusted to fill the form container */
-    box-sizing: border-box; /* Ensures padding is included within the width */
-    border-radius: 20px;
-}
-
-button {
-    padding: 12px;
-    font-size: 18px; /* Increased button text size */
-    background-color: #ffffff;
-    color: rgb(27, 26, 26);
-    border: 1px solid black;
-    border-radius: 20px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #1f52f7;
-}
-
-p {
-    text-align: center;
-    margin-top: 10px; /* Adds space above the 'Not a member?' text */
-    font-size: 16px; /* Adjusted font size for 'Not a member?' text */
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
 }
 
 a {
-    color: #64a8f1;
     text-decoration: none;
-    font-size: 16px; /* Adjusted link size */
+    color: white;
 }
 
-a:hover {
-    text-decoration: underline;
+/* Navbar */
+nav {
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Transparent black background */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    /* Fix the navbar at the top */
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    /* Stay on top */
+    transition: background-color 0.3s ease;
+}
+
+nav.scrolled {
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Darker black background when scrolling */
+}
+
+nav h1 {
+    font-size: 2.5rem;
+    color: white;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #FFD700;
+}
+
+/* Hero Section */
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(120deg, #007BFF, #28a745);
+    color: white;
+    text-align: center;
+    padding: 0 20px;
+    animation: fadeIn 2s ease-out;
+}
+
+header h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    animation: slideDown 1.5s ease-out;
+}
+
+header p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    animation: fadeIn 1.5s ease-out 1s both;
+}
+
+header .cta-button {
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    background-color: #FFD700;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+
+header .cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Mentors Section */
+.mentors-section {
+    padding: 60px 20px;
+    background-color: #f0f4f8;
+    text-align: center;
+    animation: fadeIn 2s ease-out;
+}
+
+.mentors-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #007BFF;
+}
+
+.mentor-card {
+    display: inline-block;
+    background-color: white;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.mentor-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.mentor-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.mentor-card h3 {
+    font-size: 1.5rem;
+    margin: 15px 0 10px;
+}
+
+.mentor-card p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.book-btn {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.book-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Footer Section */
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+    margin-top: 50px;
+    animation: fadeIn 3s ease-out;
+}
+
+footer p {
+    font-size: 1.2rem;
+}
+
+/* Responsive Styling */
+@media (max-width: 1200px) {
+    header h2 {
+        font-size: 2.5rem;
+    }
+
+    header p {
+        font-size: 1.2rem;
+    }
+
+    .mentor-card {
+        width: 45%;
+    }
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    header h2 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .mentor-card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        height: 80vh;
+    }
+
+    header h2 {
+        font-size: 1.8rem;
+    }
+
+    header p {
+        font-size: 0.9rem;
+    }
+
+    .cta-button {
+        padding: 10px 25px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Animations */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
