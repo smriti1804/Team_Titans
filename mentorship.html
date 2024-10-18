@@ -338,71 +338,40 @@
                 <img src="https://via.placeholder.com/120" alt="Dr. Birmohan Singh" class="mentor-image">
                 <h3>Dr. Birmohan Singh</h3>
                 <p><strong>Expertise:</strong> Data Science</p>
-                <p><strong>Experience:</strong> 8 years</p>
-                <h4>Available Time Slots:</h4>
                 <div class="time-slots">
-                    <div class="time-slot available" onclick="bookSlot('Dr. Birmohan Singh', '10:00 AM')">10:00 AM</div>
-                    <div class="time-slot available" onclick="bookSlot('Dr. Birmohan Singh', '2:00 PM')">2:00 PM</div>
+                    <div class="time-slot available">9:00 - 9:30 AM</div>
+                    <div class="time-slot booked">10:00 - 10:30 AM</div>
+                    <div class="time-slot available">11:00 - 11:30 AM</div>
                 </div>
             </div>
 
             <div class="mentor-card">
-                <img src="https://via.placeholder.com/120" alt="Dr. Damanpreet Singh" class="mentor-image">
-                <h3>Dr. Damanpreet Singh</h3>
-                <p><strong>Expertise:</strong> Computer Science</p>
-                <p><strong>Experience:</strong> 10 years</p>
-                <h4>Available Time Slots:</h4>
+                <img src="https://via.placeholder.com/120" alt="Dr. Sumita Mahajan" class="mentor-image">
+                <h3>Dr. Sumita Mahajan</h3>
+                <p><strong>Expertise:</strong> Software Engineering</p>
                 <div class="time-slots">
-                    <div class="time-slot available" onclick="bookSlot('Dr. Damanpreet Singh', '11:00 AM')">11:00 AM</div>
-                    <div class="time-slot available" onclick="bookSlot('Dr. Damanpreet Singh', '3:00 PM')">3:00 PM</div>
-                </div>
-            </div>
-
-            <div class="mentor-card">
-                <img src="https://via.placeholder.com/120" alt="Ms. Simran Kaur" class="mentor-image">
-                <h3>Ms. Simran Kaur</h3>
-                <p><strong>Expertise:</strong> Web Development</p>
-                <p><strong>Experience:</strong> 5 years</p>
-                <h4>Available Time Slots:</h4>
-                <div class="time-slots">
-                    <div class="time-slot available" onclick="bookSlot('Ms. Simran Kaur', '9:00 AM')">9:00 AM</div>
-                    <div class="time-slot available" onclick="bookSlot('Ms. Simran Kaur', '1:00 PM')">1:00 PM</div>
+                    <div class="time-slot available">9:00 - 9:30 AM</div>
+                    <div class="time-slot booked">10:00 - 10:30 AM</div>
+                    <div class="time-slot available">11:00 - 11:30 AM</div>
                 </div>
             </div>
         </section>
 
-        <section class="chat-container">
-            <h2>Chat with Mentors</h2>
-            <div class="chat-messages"></div>
-            <input type="text" id="messageInput" placeholder="Type a message..." />
-            <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+        <section id="bookings">
+            <h2>Your Bookings</h2>
+            <!-- Booking details will go here -->
+        </section>
+
+        <section id="chat" class="chat-container">
+            <h2>Messages</h2>
+            <div class="chat-messages">
+                <div class="message sent">Hello, Dr. Singh. I have some questions regarding data compression.</div>
+                <div class="message received">Sure, please let me know what you need help with.</div>
+            </div>
+            <textarea rows="3" placeholder="Type your message..." class="chat-input"></textarea>
+            <button class="btn btn-primary">Send</button>
         </section>
     </main>
-
-    <script>
-        function bookSlot(mentorName, slot) {
-            alert(`You have booked ${slot} with ${mentorName}!`);
-            // Implement booking logic
-        }
-
-        function sendMessage() {
-            const input = document.getElementById('messageInput');
-            const messageText = input.value;
-            if (messageText) {
-                const messagesContainer = document.querySelector('.chat-messages');
-                const messageElement = document.createElement('div');
-                messageElement.className = 'message sent';
-                messageElement.textContent = messageText;
-                messagesContainer.appendChild(messageElement);
-                input.value = '';
-                messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the bottom
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // Display mentors if needed
-        });
-    </script>
 </body>
 
 </html>
