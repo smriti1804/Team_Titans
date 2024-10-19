@@ -11,17 +11,19 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f0f4f8;
+            background-color: #f0f4f8; /* Light background */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             overflow: hidden;
         }
+
         .container {
-            background-color: #fff;
+            background-color: #fff; /* White card background */
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
@@ -29,40 +31,46 @@
             max-width: 90%;
             animation: fadeIn 1.5s ease-out;
         }
+
         h2 {
             text-align: center;
-            color: #007BFF;
+            color: #000; /* Black text */
             margin-bottom: 20px;
             font-size: 2.2rem;
             animation: slideDown 1.5s ease-out;
         }
+
         .input-field {
             margin-bottom: 20px;
             position: relative;
         }
+
         .input-field label {
             display: block;
-            color: #666;
+            color: #333; /* Dark gray label */
             font-size: 1.2rem;
             margin-bottom: 5px;
         }
+
         .input-field input {
             width: 100%;
             padding: 12px 15px;
             font-size: 1rem;
             border-radius: 8px;
-            border: 1px solid #ccc;
+            border: 1px solid #ccc; /* Light gray border */
             transition: all 0.3s ease;
-            background: #f9f9f9;
+            background: #f9f9f9; /* Light input background */
         }
+
         .input-field input:focus {
-            border-color: #007BFF;
-            background-color: #fff;
+            border-color: #007BFF; /* Blue border on focus */
+            background-color: #fff; /* White background on focus */
         }
+
         .submit-btn {
             width: 100%;
             padding: 12px;
-            background-color: #007BFF;
+            background-color: #007BFF; /* Blue button background */
             color: white;
             font-size: 1.2rem;
             border: none;
@@ -71,23 +79,27 @@
             transition: all 0.3s ease;
             margin-top: 15px;
         }
+
         .submit-btn:hover {
-            background-color: #0056b3;
+            background-color: #0056b3; /* Darker blue on hover */
             transform: scale(1.05);
         }
+
         .footer-link {
             text-align: center;
             margin-top: 15px;
             font-size: 1rem;
-            color: #666;
+            color: #666; /* Gray footer text */
         }
+
         .footer-link a {
-            color: #007BFF;
+            color: #007BFF; /* Blue link */
             text-decoration: none;
             transition: color 0.3s ease;
         }
+
         .footer-link a:hover {
-            color: #0056b3;
+            color: #0056b3; /* Darker blue on hover */
         }
 
         /* Animation */
@@ -96,15 +108,18 @@
                 opacity: 0;
                 transform: translateY(-50px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
@@ -116,6 +131,7 @@
                 padding: 30px;
                 width: 100%;
             }
+
             h2 {
                 font-size: 1.8rem;
             }
@@ -128,7 +144,7 @@
 
     <div class="container">
         <h2>Login</h2>
-        <form action="/home.html" onsubmit="login(event)">
+        <form action="/login" onsubmit="login(event)">
             <div class="input-field">
                 <label for="loginUsername">Username:</label>
                 <input type="text" name="username" id="loginUsername" required>
@@ -138,7 +154,7 @@
                 <input type="password" name="password" id="loginPassword" required>
             </div>
             <div class="forgot-password">
-                <a href="/forgotpassword.html">Forgot Password?</a>
+                <a href="#">Forgot Password?</a>
             </div>
             <button type="submit" class="submit-btn">Login</button>
             <div class="footer-link">
